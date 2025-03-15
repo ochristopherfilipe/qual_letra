@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qual é a Letra?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Qual é a Letra?</h1>
+            <button id="settingsButton" class="settings-button">
+                <i class="fas fa-cog"></i>
+            </button>
+        </header>
+        
+        <div id="settingsMenu" class="settings-menu">
+            <div class="settings-content">
+                <h2>Configurações</h2>
+                <div class="option-group">
+                    <label>Modo:</label>
+                    <div class="toggle-buttons">
+                        <button id="randomMode" class="active">Aleatório</button>
+                        <button id="orderMode">Alfabético</button>
+                    </div>
+                </div>
+                
+                <div class="option-group">
+                    <label>Letra:</label>
+                    <div class="toggle-buttons">
+                        <button id="upperCase" class="active">MAIÚSCULA</button>
+                        <button id="lowerCase">minúscula</button>
+                        <button id="bothCases">Ambas</button>
+                    </div>
+                </div>
+                
+                <button id="closeSettings" class="close-settings">Fechar</button>
+            </div>
+        </div>
+        
+        <div class="letter-display">
+            <div class="current-letter">A</div>
+            <div class="navigation">
+                <button id="prevLetter" class="nav-button">Anterior</button>
+                <button id="nextLetter" class="nav-button">Próxima</button>
+            </div>
+        </div>
+        
+        <div id="sadFace" class="sad-face">
+            <i class="fas fa-frown"></i>
+        </div>
+        
+        <div class="images-container">
+            <div class="image-option" data-correct="false">
+                <img src="" alt="Imagem 1" id="image1">
+            </div>
+            <div class="image-option" data-correct="true">
+                <img src="" alt="Imagem 2" id="image2">
+            </div>
+            <div class="image-option" data-correct="false">
+                <img src="" alt="Imagem 3" id="image3">
+            </div>
+        </div>
+        
+        <div class="modal" id="imageModal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <img id="modalImage" src="" alt="Imagem ampliada">
+                <p id="modalWord">Palavra</p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html> 
