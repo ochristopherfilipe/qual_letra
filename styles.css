@@ -93,6 +93,7 @@ body {
     align-items: center;
     z-index: 3000;
     animation: fadeIn 0.5s ease-in-out;
+    cursor: pointer;
 }
 
 .game-over-content {
@@ -109,9 +110,18 @@ body {
 }
 
 .game-over-content h2 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: white;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+    margin-bottom: 15px;
+}
+
+.restart-instruction {
+    font-size: 1.2rem;
+    color: white;
+    margin-top: 10px;
+    font-style: italic;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 @keyframes pulse {
@@ -140,47 +150,78 @@ header {
     margin-bottom: 30px;
     background-color: #e59da0;
     border-radius: 15px;
-    padding: 15px;
+    padding: 10px 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    min-height: 60px;
 }
 
+/* Lives container */
+.lives-container {
+    display: flex;
+    gap: 5px;
+    margin-left: 5px;
+}
+
+.heart {
+    font-size: 1.6rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+.heart.fas { color: #ff4d4d; } /* Filled */
+.heart.far { color: #f8d7da; } /* Outline (empty) */
+
+
 h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 0 10px;
+    flex-grow: 1;
+    text-align: center;
+    line-height: 1.2;
 }
 
 .header-buttons {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
     display: flex;
     gap: 10px;
+    align-items: center;
+    margin-right: 5px;
 }
 
 .icon-button, .settings-button {
     background-color: #f6d5ad;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border: none;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    flex-shrink: 0;
 }
 
 .icon-button:hover, .settings-button:hover {
     background-color: #f6b794;
-    transform: translateY(-50%) scale(1.1);
+    transform: scale(1.1);
+}
+
+/* Bounce animation for showWordsButton */
+@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(0.9); }
+  50% { transform: scale(1.1); }
+  75% { transform: scale(0.95); }
+}
+
+.icon-button.bouncing {
+  animation: bounce 0.5s ease-in-out;
 }
 
 /* Settings button and menu */
@@ -218,7 +259,7 @@ h1 {
     max-width: 400px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px; /* Adjusted gap */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
@@ -233,11 +274,22 @@ h1 {
     background-color: #e59da0;
     color: white;
     padding: 10px;
-    margin-top: 10px;
+    margin-top: 10px; /* Space above close button */
     width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    font-family: 'Comic Neue', cursive;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.close-settings:hover {
+     background-color: #f6b794;
 }
 
-/* Option groups */
+
+/* Option groups (General) */
 .option-group {
     display: flex;
     flex-direction: column;
@@ -247,7 +299,7 @@ h1 {
 
 .option-group label {
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.2rem; /* Consistent label size */
 }
 
 .toggle-buttons {
@@ -257,6 +309,7 @@ h1 {
     justify-content: center;
 }
 
+/* General Button Styles (includes toggle buttons) */
 button {
     background-color: #f6d5ad;
     border: none;
@@ -270,7 +323,7 @@ button {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-button:hover {
+button:hover:not(.icon-button):not(.settings-button) { /* Exclude header buttons */
     background-color: #f6b794;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -281,10 +334,63 @@ button.active {
     color: white;
 }
 
-button.sound-active {
-    background-color: #e59da0;
-    color: white;
+
+/* Volume Control Specific Styles */
+.volume-control {
+    width: 100%;
+    align-items: center;
 }
+
+.volume-control label {
+    margin-bottom: 8px;
+    font-size: 1.1rem; /* Slightly smaller label for volume */
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    gap: 15px;
+}
+
+.volume-icon {
+    font-size: 1.3rem;
+    color: #555;
+    width: 25px;
+    text-align: center;
+}
+
+input[type="range"] {
+    flex-grow: 1;
+    cursor: pointer;
+    height: 8px;
+    background: #f6d5ad;
+    border-radius: 5px;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #e59da0;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #e59da0;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
 
 /* Letter display section */
 .letter-display {
@@ -345,12 +451,6 @@ button.sound-active {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-.image-option.selected {
-    border-color: #e59da0;
-    transform: scale(1.1);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-
 /* Feedback visual para respostas */
 .image-option.correct {
     border-color: #4CAF50;
@@ -364,6 +464,13 @@ button.sound-active {
     background-color: rgba(244, 67, 54, 0.2);
     transform: scale(1.1);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: scale(1.1) translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: scale(1.1) translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: scale(1.1) translateX(5px); }
 }
 
 /* Sad face styles */
@@ -377,7 +484,7 @@ button.sound-active {
     color: #F44336;
     z-index: 1500;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-    animation: blinkFace 3s ease-in-out;
+    animation: blinkFace 2s ease-in-out;
 }
 
 .sad-face.show {
@@ -386,8 +493,8 @@ button.sound-active {
 
 @keyframes blinkFace {
     0%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-    10%, 30%, 50%, 70%, 90% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
-    20%, 40%, 60%, 80% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.9); }
+    10%, 90% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+    50% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.9); }
 }
 
 .image-wrapper {
@@ -398,12 +505,14 @@ button.sound-active {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #eee;
 }
 
 .image-option img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }
 
 .word-label {
@@ -414,9 +523,11 @@ button.sound-active {
     text-align: center;
     display: none;
     padding: 0 5px;
+    width: 100%;
+    word-wrap: break-word;
 }
 
-.show-words .word-label {
+body.show-words .word-label {
     display: block;
 }
 
@@ -447,6 +558,7 @@ button.sound-active {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     position: relative;
     text-align: center;
+    cursor: pointer;
 }
 
 .close-button {
@@ -457,6 +569,7 @@ button.sound-active {
     font-weight: bold;
     cursor: pointer;
     color: #e59da0;
+    z-index: 10;
 }
 
 #modalImage {
@@ -482,157 +595,72 @@ button.sound-active {
 }
 
 /* Responsive adjustments */
-@media (max-width: 600px) {
-    .current-letter {
-        font-size: 6rem;
-    }
-    
-    .images-container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: auto auto;
-        grid-template-areas:
-            "img1 img2"
-            "img3 img3";
-        gap: 15px;
-        justify-items: center;
-        margin-bottom: 25px;
-    }
-    
-    .image-option {
-        width: 177px;
-        border-radius: 12px;
-    }
-    
-    .image-option:nth-child(1) {
-        grid-area: img1;
-        justify-self: end;
-    }
-    
-    .image-option:nth-child(2) {
-        grid-area: img2;
-        justify-self: start;
-    }
-    
-    .image-option:nth-child(3) {
-        grid-area: img3;
-        justify-self: center;
-        margin-top: 5px;
-    }
-    
-    h1 {
-        font-size: 1.8rem;
-    }
-    
-    .nav-button {
-        padding: 8px 15px;
-        font-size: 0.9rem;
-    }
-    
-    .start-content h1 {
-        font-size: 2.2rem;
-    }
-    
-    .start-button {
-        font-size: 1.3rem;
-        padding: 12px 30px;
-    }
-    
-    .game-over-content h2 {
-        font-size: 2rem;
-    }
-    
-    .sad-face-img {
-        width: 120px;
-        height: 120px;
-    }
-    
-    .image-wrapper {
-        height: 130px;
-    }
-    
-    .word-label {
-        font-size: 0.9rem;
-    }
-    
-    .header-buttons {
-        right: 10px;
-    }
-    
-    .icon-button, .settings-button {
-        width: 35px;
-        height: 35px;
-        font-size: 1rem;
-    }
+@media (max-width: 700px) {
+    h1 { font-size: 2rem; margin: 0 5px; }
+    .heart { font-size: 1.5rem; }
+    .icon-button, .settings-button { width: 35px; height: 35px; font-size: 1rem; }
 }
 
-@media (max-width: 400px) {
-    .current-letter {
-        font-size: 5rem;
-        margin-bottom: 10px;
+@media (max-width: 600px) {
+    header { padding: 8px 10px; }
+    h1 { font-size: 1.8rem; }
+    .heart { font-size: 1.4rem; }
+    .lives-container { gap: 3px; }
+    .header-buttons { gap: 5px; }
+    .icon-button, .settings-button { width: 32px; height: 32px; font-size: 0.9rem; }
+
+    .current-letter { font-size: 6rem; }
+    .images-container { grid-template-columns: repeat(2, 1fr); grid-template-areas: "img1 img2" "img3 img3"; gap: 15px; justify-items: center; margin-bottom: 25px; }
+    .image-option { width: clamp(140px, 40vw, 177px); border-radius: 12px; }
+    .image-option:nth-child(1) { grid-area: img1; justify-self: end; }
+    .image-option:nth-child(2) { grid-area: img2; justify-self: start; }
+    .image-option:nth-child(3) { grid-area: img3; justify-self: center; margin-top: 0; }
+    .nav-button { padding: 8px 15px; font-size: 0.9rem; }
+    .start-content h1 { font-size: 2.2rem; }
+    .start-button { font-size: 1.3rem; padding: 12px 30px; }
+    .game-over-content h2 { font-size: 2.5rem; }
+    .sad-face-img { width: 120px; height: 120px; }
+    .image-wrapper { height: 130px; }
+    .word-label { font-size: 0.9rem; }
+}
+
+@media (max-width: 480px) {
+    header { min-height: 50px; }
+    h1 { font-size: 1.5rem; line-height: 1.1; }
+    .heart { font-size: 1.2rem; }
+    .lives-container { gap: 2px; margin-left: 2px;}
+    .header-buttons { gap: 3px; margin-right: 2px;}
+    .icon-button, .settings-button { width: 30px; height: 30px; font-size: 0.8rem; }
+    .current-letter { font-size: 5rem; margin-bottom: 15px; }
+    .letter-display { padding: 15px; margin-bottom: 20px; }
+    .navigation { gap: 10px; }
+    .nav-button { font-size: 0.8rem; padding: 6px 12px; }
+    .toggle-buttons { /* Keep side-by-side for toggles */
+        flex-direction: row;
+        gap: 8px;
     }
-    
-    .toggle-buttons {
-        flex-direction: column;
-        gap: 5px;
-    }
-    
-    .navigation {
-        gap: 10px;
-    }
-    
-    .letter-display {
-        padding: 15px;
-        margin-bottom: 20px;
-    }
-    
-    .image-option {
-        width: 157px;
-        border-radius: 10px;
-    }
-    
-    #modalWord {
-        font-size: 1.5rem;
-    }
-    
-    .start-content h1 {
-        font-size: 1.8rem;
-    }
-    
-    .start-content p {
-        font-size: 1rem;
-    }
-    
-    .start-button {
-        font-size: 1.2rem;
-        padding: 10px 25px;
-    }
-    
-    .game-over-content h2 {
-        font-size: 1.8rem;
-    }
-    
-    .sad-face-img {
-        width: 100px;
-        height: 100px;
-    }
-    
-    .image-wrapper {
-        height: 120px;
-    }
-    
-    .word-label {
-        font-size: 0.8rem;
-    }
-    
-    .header-buttons {
-        right: 5px;
-        gap: 5px;
-    }
-    
-    .icon-button, .settings-button {
-        width: 30px;
-        height: 30px;
-        font-size: 0.9rem;
-    }
-} 
+     .settings-content { gap: 20px; } /* Reduce gap in settings */
+     .volume-control label { font-size: 1rem; }
+     .volume-icon { font-size: 1.2rem; }
+     input[type="range"]::-webkit-slider-thumb { width: 18px; height: 18px;}
+     input[type="range"]::-moz-range-thumb { width: 18px; height: 18px;}
+
+    .image-option { width: clamp(120px, 38vw, 157px); }
+    #modalWord { font-size: 1.6rem; }
+    .start-content h1 { font-size: 2rem; }
+    .start-content p { font-size: 1rem; }
+    .start-button { font-size: 1.2rem; padding: 10px 25px; }
+    .game-over-content h2 { font-size: 2rem; }
+    .restart-instruction { font-size: 1rem; }
+    .sad-face-img { width: 100px; height: 100px; }
+    .image-wrapper { height: 110px; }
+    .word-label { font-size: 0.8rem; margin-top: 5px; }
+    .images-container { gap: 10px; }
+}
+
+@media (max-width: 360px) {
+    h1 { font-size: 1.3rem; }
+    .heart { font-size: 1.1rem; }
+    .icon-button, .settings-button { width: 28px; height: 28px; font-size: 0.7rem; }
+    .current-letter { font-size: 4.5rem; }
+}

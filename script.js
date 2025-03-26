@@ -1,162 +1,62 @@
 // Define the alphabet
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
-// Word and image database for each letter
+// Word and image database
 const letterWords = {
-    'a': [
-        { word: 'Abacaxi', image: 'images/a/abacaxi.jpg' },
-        { word: 'Abelha', image: 'images/a/abelha.jpg' },
-        { word: 'Avião', image: 'images/a/aviao.jpg' }
-    ],
-    'b': [
-        { word: 'Bola', image: 'images/b/bola.jpg' },
-        { word: 'Banana', image: 'images/b/banana.jpg' },
-        { word: 'Borboleta', image: 'images/b/borboleta.jpg' }
-    ],
-    'c': [
-        { word: 'Cachorro', image: 'images/c/cachorro.jpg' },
-        { word: 'Casa', image: 'images/c/casa.jpg' },
-        { word: 'Coração', image: 'images/c/coracao.jpg' }
-    ],
-    'd': [
-        { word: 'Dente', image: 'images/d/dente.jpg' },
-        { word: 'Dinossauro', image: 'images/d/dinossauro.jpg' },
-        { word: 'Dado', image: 'images/d/dado.jpg' }
-    ],
-    'e': [
-        { word: 'Elefante', image: 'images/e/elefante.jpg' },
-        { word: 'Escova de Dentes', image: 'images/e/escova.jpg' },
-        { word: 'Estrela', image: 'images/e/estrela.jpg' }
-    ],
-    'f': [
-        { word: 'Flor', image: 'images/f/flor.jpg' },
-        { word: 'Frutas', image: 'images/f/frutas.jpg' },
-        { word: 'Fogo', image: 'images/f/fogo.jpg' }
-    ],
-    'g': [
-        { word: 'Gato', image: 'images/g/gato.jpg' },
-        { word: 'Girafa', image: 'images/g/girafa.jpg' },
-        { word: 'Gelo', image: 'images/g/gelo.jpg' }
-    ],
-    'h': [
-        { word: 'Helicóptero', image: 'images/h/helicoptero.jpg' },
-        { word: 'Hambúrguer', image: 'images/h/hamburguer.jpg' },
-        { word: 'Hipopótamo', image: 'images/h/hipopotamo.jpg' }
-    ],
-    'i': [
-        { word: 'Iglu', image: 'images/i/iglu.jpg' },
-        { word: 'Igreja', image: 'images/i/igreja.jpg' },
-        { word: 'Ilha', image: 'images/i/ilha.jpg' }
-    ],
-    'j': [
-        { word: 'Janela', image: 'images/j/janela.jpg' },
-        { word: 'Jacaré', image: 'images/j/jacare.jpg' },
-        { word: 'Joaninha', image: 'images/j/joaninha.jpg' }
-    ],
-    'k': [
-        { word: 'Kiwi', image: 'images/k/kiwi.jpg' },
-        { word: 'Karatê', image: 'images/k/karate.jpg' },
-        { word: 'Koala', image: 'images/k/koala.jpg' }
-    ],
-    'l': [
-        { word: 'Livro', image: 'images/l/livro.jpg' },
-        { word: 'Leão', image: 'images/l/leao.jpg' },
-        { word: 'Lua', image: 'images/l/lua.jpg' }
-    ],
-    'm': [
-        { word: 'Maçã', image: 'images/m/maca.jpg' },
-        { word: 'Macaco', image: 'images/m/macaco.jpg' },
-        { word: 'Mão', image: 'images/m/mao.jpg' }
-    ],
-    'n': [
-        { word: 'Navio', image: 'images/n/navio.jpg' },
-        { word: 'Nuvem', image: 'images/n/nuvem.jpg' },
-        { word: 'Nariz', image: 'images/n/nariz.jpg' }
-    ],
-    'o': [
-        { word: 'Ovo', image: 'images/o/ovo.jpg' },
-        { word: 'Ovelha', image: 'images/o/ovelha.jpg' },
-        { word: 'Olho', image: 'images/o/olho.jpg' }
-    ],
-    'p': [
-        { word: 'Pato', image: 'images/p/pato.jpg' },
-        { word: 'Peixe', image: 'images/p/peixe.jpg' },
-        { word: 'Pão', image: 'images/p/pao.jpg' }
-    ],
-    'q': [
-        { word: 'Queijo', image: 'images/q/queijo.jpg' },
-        { word: 'Quadrado', image: 'images/q/quadrado.jpg' },
-        { word: 'Quebra-cabeça', image: 'images/q/quebra-cabeca.jpg' }
-    ],
-    'r': [
-        { word: 'Rato', image: 'images/r/rato.jpg' },
-        { word: 'Relógio', image: 'images/r/relogio.jpg' },
-        { word: 'Robô', image: 'images/r/robo.jpg' }
-    ],
-    's': [
-        { word: 'Sapo', image: 'images/s/sapo.jpg' },
-        { word: 'Sol', image: 'images/s/sol.jpg' },
-        { word: 'Sorvete', image: 'images/s/sorvete.jpg' }
-    ],
-    't': [
-        { word: 'Trem', image: 'images/t/trem.jpg' },
-        { word: 'Tartaruga', image: 'images/t/tartaruga.jpg' },
-        { word: 'Tomate', image: 'images/t/tomate.jpg' }
-    ],
-    'u': [
-        { word: 'Uva', image: 'images/u/uva.jpg' },
-        { word: 'Urso', image: 'images/u/urso.jpg' },
-        { word: 'Urubu', image: 'images/u/urubu.jpg' }
-    ],
-    'v': [
-        { word: 'Vaca', image: 'images/v/vaca.jpg' },
-        { word: 'Violão', image: 'images/v/violao.jpg' },
-        { word: 'Vela', image: 'images/v/vela.jpg' }
-    ],
-    'w': [
-        { word: 'Waffle', image: 'images/w/waffle.jpg' },
-        { word: 'Woody', image: 'images/w/woody.jpg' },
-        { word: 'Windsurf', image: 'images/w/windsurf.jpg' }
-    ],
-    'x': [
-        { word: 'Xícara', image: 'images/x/xicara.jpg' },
-        { word: 'Xadrez', image: 'images/x/xadrez.jpg' },
-        { word: 'Xilofone', image: 'images/x/xilofone.jpg' }
-    ],
-    'y': [
-        { word: 'Yakisoba', image: 'images/y/yakisoba.jpg' },
-        { word: 'Yoyo', image: 'images/y/yoyo.jpg' }
-    ],
-    'z': [
-        { word: 'Zebra', image: 'images/z/zebra.jpg' },
-        { word: 'Zíper', image: 'images/z/ziper.jpg' }
-    ]
+    'a': [ { word: 'Abacaxi', image: 'images/a/abacaxi.jpg' }, { word: 'Abelha', image: 'images/a/abelha.jpg' }, { word: 'Avião', image: 'images/a/aviao.jpg' } ],
+    'b': [ { word: 'Bola', image: 'images/b/bola.jpg' }, { word: 'Banana', image: 'images/b/banana.jpg' }, { word: 'Borboleta', image: 'images/b/borboleta.jpg' } ],
+    'c': [ { word: 'Cachorro', image: 'images/c/cachorro.jpg' }, { word: 'Casa', image: 'images/c/casa.jpg' }, { word: 'Coração', image: 'images/c/coracao.jpg' } ],
+    'd': [ { word: 'Dente', image: 'images/d/dente.jpg' }, { word: 'Dinossauro', image: 'images/d/dinossauro.jpg' }, { word: 'Dado', image: 'images/d/dado.jpg' } ],
+    'e': [ { word: 'Elefante', image: 'images/e/elefante.jpg' }, { word: 'Escova de Dentes', image: 'images/e/escova.jpg' }, { word: 'Estrela', image: 'images/e/estrela.jpg' } ],
+    'f': [ { word: 'Flor', image: 'images/f/flor.jpg' }, { word: 'Frutas', image: 'images/f/frutas.jpg' }, { word: 'Fogo', image: 'images/f/fogo.jpg' } ],
+    'g': [ { word: 'Gato', image: 'images/g/gato.jpg' }, { word: 'Girafa', image: 'images/g/girafa.jpg' }, { word: 'Gelo', image: 'images/g/gelo.jpg' } ],
+    'h': [ { word: 'Helicóptero', image: 'images/h/helicoptero.jpg' }, { word: 'Hambúrguer', image: 'images/h/hamburguer.jpg' }, { word: 'Hipopótamo', image: 'images/h/hipopotamo.jpg' } ],
+    'i': [ { word: 'Iglu', image: 'images/i/iglu.jpg' }, { word: 'Igreja', image: 'images/i/igreja.jpg' }, { word: 'Ilha', image: 'images/i/ilha.jpg' } ],
+    'j': [ { word: 'Janela', image: 'images/j/janela.jpg' }, { word: 'Jacaré', image: 'images/j/jacare.jpg' }, { word: 'Joaninha', image: 'images/j/joaninha.jpg' } ],
+    'k': [ { word: 'Kiwi', image: 'images/k/kiwi.jpg' }, { word: 'Karatê', image: 'images/k/karate.jpg' }, { word: 'Koala', image: 'images/k/koala.jpg' } ],
+    'l': [ { word: 'Livro', image: 'images/l/livro.jpg' }, { word: 'Leão', image: 'images/l/leao.jpg' }, { word: 'Lua', image: 'images/l/lua.jpg' } ],
+    'm': [ { word: 'Maçã', image: 'images/m/maca.jpg' }, { word: 'Macaco', image: 'images/m/macaco.jpg' }, { word: 'Mão', image: 'images/m/mao.jpg' } ],
+    'n': [ { word: 'Navio', image: 'images/n/navio.jpg' }, { word: 'Nuvem', image: 'images/n/nuvem.jpg' }, { word: 'Nariz', image: 'images/n/nariz.jpg' } ],
+    'o': [ { word: 'Ovo', image: 'images/o/ovo.jpg' }, { word: 'Ovelha', image: 'images/o/ovelha.jpg' }, { word: 'Olho', image: 'images/o/olho.jpg' } ],
+    'p': [ { word: 'Pato', image: 'images/p/pato.jpg' }, { word: 'Peixe', image: 'images/p/peixe.jpg' }, { word: 'Pão', image: 'images/p/pao.jpg' } ],
+    'q': [ { word: 'Queijo', image: 'images/q/queijo.jpg' }, { word: 'Quadrado', image: 'images/q/quadrado.jpg' }, { word: 'Quebra-cabeça', image: 'images/q/quebra-cabeca.jpg' } ],
+    'r': [ { word: 'Rato', image: 'images/r/rato.jpg' }, { word: 'Relógio', image: 'images/r/relogio.jpg' }, { word: 'Robô', image: 'images/r/robo.jpg' } ],
+    's': [ { word: 'Sapo', image: 'images/s/sapo.jpg' }, { word: 'Sol', image: 'images/s/sol.jpg' }, { word: 'Sorvete', image: 'images/s/sorvete.jpg' } ],
+    't': [ { word: 'Trem', image: 'images/t/trem.jpg' }, { word: 'Tartaruga', image: 'images/t/tartaruga.jpg' }, { word: 'Tomate', image: 'images/t/tomate.jpg' } ],
+    'u': [ { word: 'Uva', image: 'images/u/uva.jpg' }, { word: 'Urso', image: 'images/u/urso.jpg' }, { word: 'Urubu', image: 'images/u/urubu.jpg' } ],
+    'v': [ { word: 'Vaca', image: 'images/v/vaca.jpg' }, { word: 'Violão', image: 'images/v/violao.jpg' }, { word: 'Vela', image: 'images/v/vela.jpg' } ],
+    'w': [ { word: 'Waffle', image: 'images/w/waffle.jpg' }, { word: 'Woody', image: 'images/w/woody.jpg' }, { word: 'Windsurf', image: 'images/w/windsurf.jpg' } ],
+    'x': [ { word: 'Xícara', image: 'images/x/xicara.jpg' }, { word: 'Xadrez', image: 'images/x/xadrez.jpg' }, { word: 'Xilofone', image: 'images/x/xilofone.jpg' } ],
+    'y': [ { word: 'Yakisoba', image: 'images/y/yakisoba.jpg' }, { word: 'Yoyo', image: 'images/y/yoyo.jpg' } ],
+    'z': [ { word: 'Zebra', image: 'images/z/zebra.jpg' }, { word: 'Zíper', image: 'images/z/ziper.jpg' } ]
 };
 
-// App state
+// --- App State ---
+const INITIAL_LIVES = 5;
+let lives = INITIAL_LIVES;
 let currentLetterIndex = 0;
 let isRandomMode = true;
-let letterCase = 'upper'; // 'upper', 'lower', or 'both'
-let correctImageIndex = 0;
-let currentCorrectWord = null;  // Armazena a palavra correta atual
-let currentIncorrectWords = []; // Armazena as palavras incorretas atuais
-let consecutiveErrors = 0;      // Contador de erros consecutivos
-let soundEnabled = true;        // Som habilitado por padrão
-let gameStarted = false;        // Indica se o jogo foi iniciado
-let showWords = false;          // Indica se as palavras devem ser mostradas
-let isGameLocked = false;       // Impede cliques durante transições
+let letterCase = 'upper';
+let currentCorrectWord = null;
+let currentIncorrectWords = [];
+let gameStarted = false;
+let showWords = false;
+let isGameLocked = false;
 
-// DOM Elements
+// --- Volume State ---
+let musicVolume = 0.5; // Default music volume
+let effectsVolume = 0.8; // Default effects volume
+
+// --- DOM Elements ---
 const startScreen = document.getElementById('startScreen');
 const startButton = document.getElementById('startButton');
 const gameOverScreen = document.getElementById('gameOverScreen');
+const livesContainer = document.getElementById('livesContainer');
 const randomModeBtn = document.getElementById('randomMode');
 const orderModeBtn = document.getElementById('orderMode');
 const upperCaseBtn = document.getElementById('upperCase');
 const lowerCaseBtn = document.getElementById('lowerCase');
 const bothCasesBtn = document.getElementById('bothCases');
-const soundOnBtn = document.getElementById('soundOn');
-const soundOffBtn = document.getElementById('soundOff');
 const prevLetterBtn = document.getElementById('prevLetter');
 const nextLetterBtn = document.getElementById('nextLetter');
 const currentLetterEl = document.querySelector('.current-letter');
@@ -164,514 +64,391 @@ const imageOptions = document.querySelectorAll('.image-option');
 const modal = document.getElementById('imageModal');
 const modalImage = document.getElementById('modalImage');
 const modalWord = document.getElementById('modalWord');
-const closeModal = document.querySelector('.close-button');
+const modalContent = modal.querySelector('.modal-content');
+const closeModalBtn = modal.querySelector('.close-button');
 const settingsButton = document.getElementById('settingsButton');
 const settingsMenu = document.getElementById('settingsMenu');
 const closeSettings = document.getElementById('closeSettings');
 const sadFace = document.getElementById('sadFace');
 const showWordsButton = document.getElementById('showWordsButton');
 
+// Volume Control Elements
+const musicVolumeSlider = document.getElementById('musicVolumeSlider');
+const effectsVolumeSlider = document.getElementById('effectsVolumeSlider');
+const musicVolumeIcon = document.getElementById('musicVolumeIcon');
+const effectsVolumeIcon = document.getElementById('effectsVolumeIcon');
+
 // Audio Elements
+const backgroundMusic = document.getElementById('backgroundMusic');
 const clickSound = document.getElementById('clickSound');
 const correctSound = document.getElementById('correctSound');
+const correctSound1 = document.getElementById('correctSound1'); // Added
+const eyeSound = document.getElementById('eyeSound');       // Added
+const errorSound = document.getElementById('errorSound');
 const gameOverSound = document.getElementById('gameOverSound');
 const gameStartSound = document.getElementById('gameStartSound');
 
-// Initialize app
-document.addEventListener('DOMContentLoaded', () => {
-    setEventListeners();
-    // Não inicializamos o jogo aqui, apenas aguardamos o clique no botão JOGAR
-});
-
-// Function to play sound if enabled
+// --- Utility Functions ---
 function playSound(sound) {
-    if (soundEnabled) {
-        sound.currentTime = 0; // Reinicia o som caso esteja tocando
-        sound.play();
+    if (sound && effectsVolume > 0) {
+        sound.volume = effectsVolume;
+        sound.currentTime = 0;
+        sound.play().catch(error => console.error(`Error playing sound ${sound.id}:`, error));
+    } else if (!sound) {
+        console.warn("Attempted to play an undefined sound element.");
     }
 }
 
-// Function to start the game
+function setLock(lockState) {
+    console.log(`Setting isGameLocked to: ${lockState}`);
+    isGameLocked = lockState;
+}
+
+function updateVolumeIcon(iconElement, volume) {
+    if (!iconElement) return;
+    iconElement.classList.remove('fa-volume-xmark', 'fa-volume-low', 'fa-volume-high');
+    if (volume <= 0) iconElement.classList.add('fa-volume-xmark');
+    else if (volume < 0.5) iconElement.classList.add('fa-volume-low');
+    else iconElement.classList.add('fa-volume-high');
+}
+
+// --- Lives Functions ---
+function initializeLivesDisplay() {
+    livesContainer.innerHTML = '';
+    for (let i = 0; i < INITIAL_LIVES; i++) {
+        const heart = document.createElement('i');
+        heart.classList.add('heart', 'fas', 'fa-heart');
+        livesContainer.appendChild(heart);
+    }
+}
+function updateLivesDisplay() {
+    const heartIcons = livesContainer.querySelectorAll('.heart');
+    heartIcons.forEach((heart, index) => {
+        if (index < lives) heart.classList.replace('far', 'fas');
+        else heart.classList.replace('fas', 'far');
+    });
+}
+// --- End Lives Functions ---
+
+// --- Game Start/End ---
 function startGame() {
+    console.log("Starting game...");
     gameStarted = true;
-    startScreen.classList.add('hiding');
-    
-    // Esconder a tela inicial após a animação
-    setTimeout(() => {
-        startScreen.style.display = 'none';
-    }, 500);
-    
-    // Tocar som de início do jogo
-    playSound(gameStartSound);
-    
-    // Inicializar o jogo
-    resetConsecutiveErrors();
+    setLock(false);
+    lives = INITIAL_LIVES;
+    initializeLivesDisplay();
+    updateLivesDisplay();
+
+    if (startScreen.style.display !== 'none') {
+        startScreen.classList.add('hiding');
+        setTimeout(() => {
+            startScreen.style.display = 'none';
+            startScreen.classList.remove('hiding');
+        }, 500);
+        playSound(gameStartSound);
+
+        if (backgroundMusic.paused && musicVolume > 0) {
+             backgroundMusic.volume = musicVolume;
+             setTimeout(() => {
+                 backgroundMusic.play().catch(error => {
+                     console.error("Background music autoplay failed:", error);
+                 });
+             }, 100);
+        }
+    }
+     if (gameOverScreen.style.display !== 'none') {
+         gameOverScreen.style.display = 'none';
+         gameOverScreen.removeEventListener('click', handleGameOverClick);
+     }
+
     updateLetter();
 }
 
-// Function to show game over screen
+const handleGameOverClick = () => {
+    console.log("Game Over screen clicked - restarting.");
+    gameOverScreen.style.display = 'none';
+    startGame();
+};
 function showGameOver() {
+    console.log("Showing Game Over screen.");
+    setLock(true);
     playSound(gameOverSound);
-    
     gameOverScreen.style.display = 'flex';
-    
-    // Esconder tela de game over após 4 segundos
-    setTimeout(() => {
-        gameOverScreen.classList.add('hiding');
-        
-        setTimeout(() => {
-            gameOverScreen.style.display = 'none';
-            gameOverScreen.classList.remove('hiding');
-            resetConsecutiveErrors();
-        }, 500);
-    }, 4000);
+    gameOverScreen.classList.remove('hiding');
+    gameOverScreen.removeEventListener('click', handleGameOverClick);
+    gameOverScreen.addEventListener('click', handleGameOverClick, { once: true });
 }
+// --- End Game Start/End ---
 
-// Reset consecutive errors counter
-function resetConsecutiveErrors() {
-    consecutiveErrors = 0;
+
+// --- Modal Logic ---
+const closeModalAndAdvance = () => {
+    if (modal.classList.contains('show')) {
+        console.log("Closing modal and advancing...");
+        modal.classList.remove('show');
+        advanceToNextLetter();
+    } else {
+        console.log("closeModalAndAdvance called but modal not shown.");
+    }
+};
+// --- End Modal Logic ---
+
+
+// --- Core Game Flow ---
+function advanceToNextLetter() {
+    console.log("Advancing to next letter...");
+    if (isRandomMode) getRandomLetter();
+    else currentLetterIndex = (currentLetterIndex + 1) % alphabet.length;
+    updateLetter();
 }
+function updateLetter() {
+    console.log("Updating letter...");
+    if (isRandomMode) getRandomLetter();
+    updateLetterDisplay();
+    updateImages();
+}
+function getRandomLetter() {
+    let newIndex;
+    do newIndex = Math.floor(Math.random() * alphabet.length);
+    while (newIndex === currentLetterIndex && alphabet.length > 1);
+    currentLetterIndex = newIndex;
+}
+function updateLetterDisplay() {
+    const currentLetter = alphabet[currentLetterIndex];
+    let displayLetter;
+    if (letterCase === 'upper') displayLetter = currentLetter.toUpperCase();
+    else if (letterCase === 'lower') displayLetter = currentLetter.toLowerCase();
+    else displayLetter = Math.random() > 0.5 ? currentLetter.toUpperCase() : currentLetter.toLowerCase();
+    currentLetterEl.textContent = displayLetter;
+}
+function updateImages() {
+    console.log("--- Updating images ---");
+    setLock(false); // UNLOCK GAME
 
-// Set event listeners
+    const currentLetter = alphabet[currentLetterIndex];
+    try {
+        const letterData = letterWords[currentLetter];
+        if (!letterData || letterData.length === 0) {
+            console.error(`No words for "${currentLetter}". Skipping.`);
+            setTimeout(advanceToNextLetter, 10); return;
+        }
+        currentIncorrectWords = getIncorrectImages(currentLetter);
+        if (!currentIncorrectWords || currentIncorrectWords.length < 2) {
+             console.error(`Could not get 2 incorrect images for "${currentLetter}". Skipping.`);
+             setTimeout(advanceToNextLetter, 10); return;
+        }
+        const correctWordIndexInList = Math.floor(Math.random() * letterData.length);
+        currentCorrectWord = letterData[correctWordIndexInList];
+         if (!currentCorrectWord) {
+            console.error(`Could not get correct word for "${currentLetter}". Skipping.`);
+             setTimeout(advanceToNextLetter, 10); return;
+         }
+        const correctDisplayIndex = Math.floor(Math.random() * 3);
+        let displayItems = [];
+        displayItems[correctDisplayIndex] = { ...currentCorrectWord, isCorrect: true };
+        let incorrectIdx = 0;
+        for (let i = 0; i < 3; i++) {
+            if (i !== correctDisplayIndex) {
+                 if(incorrectIdx < currentIncorrectWords.length) {
+                    displayItems[i] = { ...currentIncorrectWords[incorrectIdx], isCorrect: false };
+                    incorrectIdx++;
+                 } else {
+                      console.error("Incorrect images array mismatch during filling.");
+                       setTimeout(advanceToNextLetter, 10); return;
+                 }
+            }
+        }
+        imageOptions.forEach((option, index) => {
+            option.classList.remove('selected', 'correct', 'incorrect');
+            const item = displayItems[index];
+             if (!item) {
+                 console.error(`Display item ${index} missing for ${currentLetter}`);
+                 option.innerHTML = `<div class="image-wrapper"><img src="" alt="Error"></div><div class="word-label">Erro</div>`;
+                 option.setAttribute('data-correct', 'false'); return;
+            }
+            option.setAttribute('data-correct', item.isCorrect.toString());
+            const imgWrapper = option.querySelector('.image-wrapper');
+            const wordLabel = option.querySelector('.word-label');
+            let imgElement = option.querySelector('img');
+            if (!imgElement && imgWrapper) {
+                 imgElement = document.createElement('img');
+                 imgWrapper.innerHTML = '';
+                 imgWrapper.appendChild(imgElement);
+            }
+            if (imgElement) {
+                imgElement.src = item.image || '';
+                imgElement.alt = item.word || `Opção ${index + 1}`;
+                imgElement.onerror = function() {
+                    this.alt = item.word || 'Imagem não encontrada';
+                    this.src = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150"><rect width="100%" height="100%" fill="%23f0f0f0"/><text x="50%" y="50%" font-family="Arial" font-size="20" fill="%23555" dominant-baseline="middle" text-anchor="middle">${this.alt}</text></svg>`;
+                };
+            }
+            if (wordLabel) {
+                 wordLabel.textContent = item.word || '';
+            }
+        });
+        document.body.classList.toggle('show-words', showWords);
+        console.log("--- Images updated successfully ---");
+    } catch (error) {
+        console.error('Error during updateImages:', error);
+         setTimeout(advanceToNextLetter, 50);
+    }
+}
+function getIncorrectImages(currentLetter) {
+    const incorrectImages = [];
+    const availableLetters = Object.keys(letterWords).filter(letter => letter !== currentLetter && letterWords[letter]?.length > 0);
+    let attempts = 0; const maxAttempts = 50;
+    while (incorrectImages.length < 2 && attempts < maxAttempts && availableLetters.length > 0) {
+        attempts++;
+        const randomLetterIndex = Math.floor(Math.random() * availableLetters.length);
+        const randomLetter = availableLetters[randomLetterIndex];
+        const wordsFromLetter = letterWords[randomLetter];
+        if (wordsFromLetter && wordsFromLetter.length > 0) {
+            const randomWordIndex = Math.floor(Math.random() * wordsFromLetter.length);
+            const potentialWord = wordsFromLetter[randomWordIndex];
+            const alreadySelected = incorrectImages.some(img => img.word === potentialWord.word || img.image === potentialWord.image);
+            if (!alreadySelected) incorrectImages.push(potentialWord);
+            else availableLetters.splice(randomLetterIndex, 1);
+        } else availableLetters.splice(randomLetterIndex, 1);
+    }
+     if(incorrectImages.length < 2) console.warn(`Could only find ${incorrectImages.length} incorrect images.`);
+    return incorrectImages;
+}
+// --- End Core Game Flow ---
+
+
+// --- Event Listeners Setup ---
 function setEventListeners() {
+    console.log("Setting event listeners...");
+
     // Start button
-    startButton.addEventListener('click', () => {
-        startGame();
-    });
-    
-    // Settings menu
+    startButton.addEventListener('click', startGame);
+
+    // Settings
     settingsButton.addEventListener('click', () => {
+        if (isGameLocked) { console.log("Settings button blocked by lock"); return; }
         playSound(clickSound);
         settingsMenu.classList.add('show');
     });
-    
-    closeSettings.addEventListener('click', () => {
-        settingsMenu.classList.remove('show');
-    });
-    
-    // Close settings when clicking outside the content
+    closeSettings.addEventListener('click', () => settingsMenu.classList.remove('show'));
     settingsMenu.addEventListener('click', (e) => {
-        if (e.target === settingsMenu) {
-            settingsMenu.classList.remove('show');
-        }
+        if (e.target === settingsMenu) settingsMenu.classList.remove('show');
     });
 
     // Mode buttons
-    randomModeBtn.addEventListener('click', () => {
-        isRandomMode = true;
-        toggleActiveButton(randomModeBtn, orderModeBtn);
-        updateLetter();
-    });
-
-    orderModeBtn.addEventListener('click', () => {
-        isRandomMode = false;
-        toggleActiveButton(orderModeBtn, randomModeBtn);
-        updateLetter();
-    });
+    randomModeBtn.addEventListener('click', () => { if (!isGameLocked) { isRandomMode = true; toggleActiveButton(randomModeBtn, orderModeBtn); updateLetter(); }});
+    orderModeBtn.addEventListener('click', () => { if (!isGameLocked) { isRandomMode = false; toggleActiveButton(orderModeBtn, randomModeBtn); updateLetter(); }});
 
     // Case buttons
-    upperCaseBtn.addEventListener('click', () => {
-        letterCase = 'upper';
-        toggleActiveButton(upperCaseBtn, [lowerCaseBtn, bothCasesBtn]);
-        updateLetterDisplay();
-    });
+    upperCaseBtn.addEventListener('click', () => { if (!isGameLocked) { letterCase = 'upper'; toggleActiveButton(upperCaseBtn, [lowerCaseBtn, bothCasesBtn]); updateLetterDisplay(); }});
+    lowerCaseBtn.addEventListener('click', () => { if (!isGameLocked) { letterCase = 'lower'; toggleActiveButton(lowerCaseBtn, [upperCaseBtn, bothCasesBtn]); updateLetterDisplay(); }});
+    bothCasesBtn.addEventListener('click', () => { if (!isGameLocked) { letterCase = 'both'; toggleActiveButton(bothCasesBtn, [upperCaseBtn, lowerCaseBtn]); updateLetterDisplay(); }});
 
-    lowerCaseBtn.addEventListener('click', () => {
-        letterCase = 'lower';
-        toggleActiveButton(lowerCaseBtn, [upperCaseBtn, bothCasesBtn]);
-        updateLetterDisplay();
+    // Volume Sliders
+    musicVolumeSlider.addEventListener('input', (e) => {
+        musicVolume = parseFloat(e.target.value);
+        backgroundMusic.volume = musicVolume;
+        updateVolumeIcon(musicVolumeIcon, musicVolume);
+        if (musicVolume > 0 && backgroundMusic.paused && gameStarted) {
+             backgroundMusic.play().catch(e => console.error("Error resuming music:", e));
+        } else if (musicVolume <= 0) {
+             backgroundMusic.pause();
+        }
     });
-
-    bothCasesBtn.addEventListener('click', () => {
-        letterCase = 'both';
-        toggleActiveButton(bothCasesBtn, [upperCaseBtn, lowerCaseBtn]);
-        updateLetterDisplay();
-    });
-    
-    // Sound buttons
-    soundOnBtn.addEventListener('click', () => {
-        soundEnabled = true;
-        toggleActiveButton(soundOnBtn, soundOffBtn);
-    });
-    
-    soundOffBtn.addEventListener('click', () => {
-        soundEnabled = false;
-        toggleActiveButton(soundOffBtn, soundOnBtn);
-        // Não tocamos som aqui porque o som foi desativado
+    effectsVolumeSlider.addEventListener('input', (e) => {
+        effectsVolume = parseFloat(e.target.value);
+        updateVolumeIcon(effectsVolumeIcon, effectsVolume);
     });
 
     // Navigation buttons
-    prevLetterBtn.addEventListener('click', () => {
-        if (!isRandomMode) {
-            currentLetterIndex = (currentLetterIndex - 1 + alphabet.length) % alphabet.length;
-            updateLetter();
-        } else {
-            getRandomLetter();
-            updateLetterDisplay();
-            updateImages();
-        }
-    });
-
-    nextLetterBtn.addEventListener('click', () => {
-        if (!isRandomMode) {
-            currentLetterIndex = (currentLetterIndex + 1) % alphabet.length;
-            updateLetter();
-        } else {
-            getRandomLetter();
-            updateLetterDisplay();
-            updateImages();
-        }
-    });
+    prevLetterBtn.addEventListener('click', () => { if (!isGameLocked) { playSound(clickSound); if (!isRandomMode) { currentLetterIndex = (currentLetterIndex - 1 + alphabet.length) % alphabet.length; updateLetter(); } else { getRandomLetter(); updateLetterDisplay(); updateImages(); } }});
+    nextLetterBtn.addEventListener('click', () => { if (!isGameLocked) { playSound(clickSound); if (!isRandomMode) { currentLetterIndex = (currentLetterIndex + 1) % alphabet.length; updateLetter(); } else { getRandomLetter(); updateLetterDisplay(); updateImages(); } }});
 
     // Show/Hide Words Button
     showWordsButton.addEventListener('click', () => {
-        playSound(clickSound);
+        if (isGameLocked) { console.log("Show words blocked by lock"); return; }
+        playSound(eyeSound); // Play specific eye sound <--- CHANGE HERE
         showWords = !showWords;
-        
-        // Atualizar ícone
-        if (showWords) {
-            showWordsButton.innerHTML = '<i class="fas fa-eye-slash"></i>';
-            document.body.classList.add('show-words');
-        } else {
-            showWordsButton.innerHTML = '<i class="fas fa-eye"></i>';
-            document.body.classList.remove('show-words');
-        }
+        showWordsButton.classList.add('bouncing');
+        showWordsButton.addEventListener('animationend', () => showWordsButton.classList.remove('bouncing'), { once: true });
+        showWordsButton.innerHTML = showWords ? '<i class="fas fa-eye-slash"></i>' : '<i class="fas fa-eye"></i>';
+        document.body.classList.toggle('show-words', showWords);
     });
 
-    // Image options
+    // --- Image Option Click (Interaction Logic) ---
     imageOptions.forEach(option => {
         option.addEventListener('click', () => {
-            // Se o jogo estiver bloqueado, não fazer nada
-            if (isGameLocked) return;
-            
+            if (isGameLocked) { console.log("Image click blocked by lock"); return; }
+            console.log("Image clicked.");
+            setLock(true); // LOCK GAME
+
             const isCorrect = option.getAttribute('data-correct') === 'true';
-            const wordIndex = parseInt(option.getAttribute('data-word-index'));
-            
-            // Remove any previous selections and feedback
-            imageOptions.forEach(opt => {
-                opt.classList.remove('selected', 'correct', 'incorrect');
-            });
-            
-            // Apply appropriate feedback class
+            imageOptions.forEach(opt => opt.classList.remove('selected', 'correct', 'incorrect'));
+
             if (isCorrect) {
-                // Resposta correta
+                console.log("Correct answer.");
                 option.classList.add('correct');
-                playSound(correctSound);
-                resetConsecutiveErrors(); // Resetar erros consecutivos quando acertar
-                
-                // Show modal for correct answer
+                playSound(correctSound); // Play original correct sound
+                playSound(correctSound1); // Play NEW correct sound 1 <--- CHANGE HERE
+
                 const imgElement = option.querySelector('img');
-                modalImage.src = imgElement.src;
-                modalWord.textContent = currentCorrectWord.word;
-                
-                // Fallback para imagem não encontrada no modal
-                modalImage.onerror = function() {
-                    this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"><rect width="100%" height="100%" fill="%23f0f0f0"/><text x="50%" y="50%" font-family="Arial" font-size="32" fill="%23333" dominant-baseline="middle" text-anchor="middle">' + modalWord.textContent + '</text></svg>';
-                };
-                
-                // Adicionar instrução para clicar e continuar
-                modalWord.innerHTML = currentCorrectWord.word + '<div class="click-instruction">Clique para continuar</div>';
-                
+                const wordText = option.querySelector('.word-label')?.textContent || 'Palavra';
+                modalImage.src = imgElement?.src || '';
+                modalWord.textContent = wordText;
+                modalImage.onerror = function() { /* fallback */ };
+                modalWord.innerHTML = wordText + '<div class="click-instruction">Clique para continuar</div>';
                 modal.classList.add('show');
-                
-                // Não avançar automaticamente - aguardar clique do usuário
+                console.log("Modal shown. Game locked.");
+
             } else {
-                // Resposta incorreta
+                console.log("Incorrect answer.");
                 option.classList.add('incorrect');
-                
-                // Bloquear o jogo para impedir cliques
-                isGameLocked = true;
-                
-                // Incrementar contador de erros consecutivos
-                consecutiveErrors++;
-                
-                // Se atingiu 4 erros consecutivos, mostrar tela de game over
-                if (consecutiveErrors >= 4) {
-                    showGameOver();
-                    return; // Sair da função para não continuar com o rosto triste normal
-                }
-                
-                // Mostrar o rosto triste
-                sadFace.classList.add('show');
-                
-                // Avançar para a próxima letra após 3 segundos
-                setTimeout(() => {
-                    sadFace.classList.remove('show');
-                    advanceToNextLetter();
-                }, 3000); // 3 segundos para respostas incorretas
-            }
-        });
-    });
+                playSound(errorSound);
+                lives--;
+                updateLivesDisplay();
 
-    // Function to advance to next letter
-    function advanceToNextLetter() {
-        if (isRandomMode) {
-            getRandomLetter();
-        } else {
-            currentLetterIndex = (currentLetterIndex + 1) % alphabet.length;
-        }
-        
-        updateLetter();
-    }
-
-    // Close modal
-    closeModal.addEventListener('click', () => {
-        modal.classList.remove('show');
-        advanceToNextLetter(); // Avançar para a próxima letra quando fechar o modal
-    });
-
-    // Close modal when clicking outside the content
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.remove('show');
-            advanceToNextLetter(); // Avançar para a próxima letra quando fechar o modal
-        }
-    });
-    
-    // Adicionar evento de clique na imagem do modal e palavra para avançar
-    modalImage.addEventListener('click', () => {
-        modal.classList.remove('show');
-        advanceToNextLetter();
-    });
-    
-    modalWord.addEventListener('click', () => {
-        modal.classList.remove('show');
-        advanceToNextLetter();
-    });
-}
-
-// Toggle active button
-function toggleActiveButton(activeBtn, inactiveBtns) {
-    if (!Array.isArray(inactiveBtns)) {
-        inactiveBtns = [inactiveBtns];
-    }
-    
-    activeBtn.classList.add('active');
-    inactiveBtns.forEach(btn => btn.classList.remove('active'));
-}
-
-// Update current letter
-function updateLetter() {
-    if (isRandomMode) {
-        getRandomLetter();
-    }
-    
-    // Atualizar a exibição da letra atual
-    updateLetterDisplay();
-    
-    // Garantir que as imagens correspondam à letra atual
-    updateImages();
-}
-
-// Get random letter
-function getRandomLetter() {
-    const newIndex = Math.floor(Math.random() * alphabet.length);
-    // Ensure we don't get the same letter twice in a row
-    currentLetterIndex = newIndex === currentLetterIndex ? 
-        (newIndex + 1) % alphabet.length : newIndex;
-}
-
-// Update letter display based on case setting
-function updateLetterDisplay() {
-    const currentLetter = alphabet[currentLetterIndex];
-    
-    let displayLetter;
-    if (letterCase === 'upper') {
-        displayLetter = currentLetter.toUpperCase();
-    } else if (letterCase === 'lower') {
-        displayLetter = currentLetter.toLowerCase();
-    } else { // both
-        displayLetter = Math.random() > 0.5 ? 
-            currentLetter.toUpperCase() : currentLetter.toLowerCase();
-    }
-    
-    currentLetterEl.textContent = displayLetter;
-}
-
-// Update images based on current letter
-function updateImages() {
-    // Desbloqueamos o jogo quando atualizamos as imagens
-    isGameLocked = false;
-    
-    const currentLetter = alphabet[currentLetterIndex];
-    
-    try {
-        // Verificar se existem palavras para a letra atual
-        if (!letterWords[currentLetter] || letterWords[currentLetter].length === 0) {
-            console.error(`Erro: Não há palavras definidas para a letra "${currentLetter}"`);
-            // Se por algum motivo não houver palavras definidas, avançar para próxima letra
-            if (isRandomMode) {
-                getRandomLetter();
-            } else {
-                currentLetterIndex = (currentLetterIndex + 1) % alphabet.length;
-            }
-            // Chamamos updateLetter recursivamente, mas com proteção
-            setTimeout(() => updateLetter(), 0);
-            return; // Sair da função atual
-        }
-        
-        // Get two random words not starting with current letter
-        currentIncorrectWords = getIncorrectImages(currentLetter);
-        
-        // Verificar se conseguimos obter imagens incorretas
-        if (!currentIncorrectWords || currentIncorrectWords.length < 2) {
-            console.error(`Erro: Não foi possível obter imagens incorretas para a letra "${currentLetter}"`);
-            // Tentar com outra letra
-            getRandomLetter();
-            setTimeout(() => updateLetter(), 0);
-            return;
-        }
-        
-        // Get a random word starting with current letter
-        const letterWordsForCurrentLetter = letterWords[currentLetter];
-        // Selecionar palavra aleatória da lista de palavras para a letra atual
-        const correctWordIndex = Math.floor(Math.random() * letterWordsForCurrentLetter.length);
-        currentCorrectWord = letterWordsForCurrentLetter[correctWordIndex];
-        
-        // Se não conseguimos obter uma palavra correta, tentar com outra letra
-        if (!currentCorrectWord) {
-            console.error(`Erro: Não foi possível obter palavra correta para a letra "${currentLetter}"`);
-            getRandomLetter();
-            setTimeout(() => updateLetter(), 0);
-            return;
-        }
-        
-        // Randomly select which position (0, 1, or 2) will show the correct image
-        correctImageIndex = Math.floor(Math.random() * 3);
-        
-        // Criar um array com todas as três imagens na ordem que serão exibidas
-        let allImages = Array(3).fill(null);
-        
-        // Primeiro, colocamos a imagem correta na posição correta
-        allImages[correctImageIndex] = {
-            word: currentCorrectWord.word,
-            image: currentCorrectWord.image,
-            isCorrect: true,
-            wordIndex: 0
-        };
-        
-        // Agora, preenchemos as posições restantes com as imagens incorretas
-        let incorrectCounter = 0;
-        for (let i = 0; i < 3; i++) {
-            if (i !== correctImageIndex) {
-                if (incorrectCounter < currentIncorrectWords.length) {
-                    allImages[i] = {
-                        word: currentIncorrectWords[incorrectCounter].word,
-                        image: currentIncorrectWords[incorrectCounter].image,
-                        isCorrect: false,
-                        wordIndex: incorrectCounter
-                    };
-                    incorrectCounter++;
+                if (lives <= 0) {
+                    console.log("No lives left. Triggering Game Over.");
+                    setTimeout(showGameOver, 500);
                 } else {
-                    // Caso de erro: não há imagens incorretas suficientes
-                    console.error('Erro: Não há imagens incorretas suficientes');
-                    getRandomLetter();
-                    setTimeout(() => updateLetter(), 0);
-                    return;
+                    console.log(`Lives remaining: ${lives}. Showing feedback.`);
+                    sadFace.classList.add('show');
+                    setTimeout(() => {
+                        console.log("Incorrect feedback timeout ended. Advancing.");
+                        sadFace.classList.remove('show');
+                        advanceToNextLetter(); // This unlocks via updateImages
+                    }, 2000);
                 }
             }
-        }
-        
-        // Verificar se todas as posições foram preenchidas
-        const allFilled = allImages.every(img => img !== null);
-        if (!allFilled) {
-            console.error('Erro: Nem todas as posições de imagem foram preenchidas');
-            getRandomLetter();
-            setTimeout(() => updateLetter(), 0);
-            return; // Sair da função se houver erro
-        }
-        
-        // Update image elements
-        imageOptions.forEach((option, index) => {
-            // Remove any previous feedback classes
-            option.classList.remove('selected', 'correct', 'incorrect');
-            
-            const currentImage = allImages[index];
-            
-            // Atualizar estrutura HTML para acomodar a palavra abaixo da imagem
-            option.innerHTML = `
-                <div class="image-wrapper">
-                    <img src="${currentImage.image}" alt="${currentImage.word}">
-                </div>
-                <div class="word-label">${currentImage.word}</div>
-            `;
-            
-            option.setAttribute('data-correct', currentImage.isCorrect.toString());
-            option.setAttribute('data-word-index', currentImage.wordIndex.toString());
-            
-            // Fallback para imagens não encontradas
-            const imgElement = option.querySelector('img');
-            imgElement.onerror = function() {
-                this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150"><rect width="100%" height="100%" fill="%23f0f0f0"/><text x="50%" y="50%" font-family="Arial" font-size="24" fill="%23333" dominant-baseline="middle" text-anchor="middle">' + currentImage.word + '</text></svg>';
-            };
         });
-        
-        // Verificação final: garantir que pelo menos uma opção é a correta
-        const correctOption = document.querySelector('.image-option[data-correct="true"]');
-        if (!correctOption) {
-            console.error('Erro crítico: Nenhuma opção marcada como correta após a atualização');
-            // Tentar novamente com uma nova letra
-            getRandomLetter();
-            setTimeout(() => updateLetter(), 0);
-            return;
-        }
-        
-        // Aplicar a classe show-words se necessário
-        if (showWords) {
-            document.body.classList.add('show-words');
-        } else {
-            document.body.classList.remove('show-words');
-        }
-        
-    } catch (error) {
-        console.error('Erro ao atualizar imagens:', error);
-        // Em caso de erro, tentar com outra letra
-        getRandomLetter();
-        setTimeout(() => updateLetter(), 0);
-    }
+    }); // End imageOptions forEach
+
+    // --- Modal Event Listeners ---
+    closeModalBtn.addEventListener('click', (e) => { e.stopPropagation(); console.log("Modal close button."); closeModalAndAdvance(); });
+    modal.addEventListener('click', (e) => { if (e.target === modal) { console.log("Modal background."); closeModalAndAdvance(); } });
+    modalContent.addEventListener('click', (e) => { if (!e.target.classList.contains('close-button')) { console.log("Modal content."); closeModalAndAdvance(); } });
+    // --- End Modal Listeners ---
+
+    console.log("Event listeners set.");
+
+} // End setEventListeners
+
+// Toggle active button helper
+function toggleActiveButton(activeBtn, inactiveBtns) {
+    if (!Array.isArray(inactiveBtns)) inactiveBtns = [inactiveBtns];
+    activeBtn.classList.add('active');
+    inactiveBtns.forEach(btn => btn?.classList.remove('active'));
 }
 
-// Get two incorrect images (not starting with current letter)
-function getIncorrectImages(currentLetter) {
-    const allLetters = Object.keys(letterWords).filter(letter => letter !== currentLetter);
-    
-    // Pick two random letters
-    const randomLetters = [];
-    while (randomLetters.length < 2) {
-        const randomLetter = allLetters[Math.floor(Math.random() * allLetters.length)];
-        if (!randomLetters.includes(randomLetter)) {
-            randomLetters.push(randomLetter);
-        }
-    }
-    
-    // Pick a random word from each letter
-    const incorrectImages = [];
-    
-    // Primeira imagem incorreta
-    const firstLetterWords = letterWords[randomLetters[0]];
-    const firstWordIndex = Math.floor(Math.random() * firstLetterWords.length);
-    incorrectImages.push(firstLetterWords[firstWordIndex]);
-    
-    // Segunda imagem incorreta (garantindo que seja diferente da primeira)
-    const secondLetterWords = letterWords[randomLetters[1]];
-    let secondWordIndex;
-    let secondWord;
-    let attempts = 0;
-    const maxAttempts = 10; // Limite de tentativas para evitar loop infinito
-    
-    do {
-        secondWordIndex = Math.floor(Math.random() * secondLetterWords.length);
-        secondWord = secondLetterWords[secondWordIndex];
-        attempts++;
-        
-        // Se já tentamos muitas vezes ou as letras são diferentes, podemos sair do loop
-        // Letras diferentes já garantem imagens diferentes na maioria dos casos
-        if (attempts >= maxAttempts || randomLetters[0] !== randomLetters[1]) {
-            break;
-        }
-    } while (secondWord.word === incorrectImages[0].word || secondWord.image === incorrectImages[0].image);
-    
-    incorrectImages.push(secondWord);
-    
-    return incorrectImages;
-} 
+// --- Initial Setup ---
+document.addEventListener('DOMContentLoaded', () => {
+    // Set initial UI from variables
+    musicVolumeSlider.value = musicVolume;
+    effectsVolumeSlider.value = effectsVolume;
+    updateVolumeIcon(musicVolumeIcon, musicVolume);
+    updateVolumeIcon(effectsVolumeIcon, effectsVolume);
+    backgroundMusic.volume = musicVolume;
+
+    setEventListeners(); // Setup interactions
+    console.log("DOM Loaded and Initial Setup Complete.");
+});
