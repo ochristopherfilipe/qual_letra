@@ -19,7 +19,7 @@ const letterWords = {
         { word: 'Coração', image: 'images/c/coracao.jpg' }
     ],
     'd': [
-        { word: 'Dedo', image: 'images/d/dedo.jpg' },
+        { word: 'Dente', image: 'images/d/dente.jpg' },
         { word: 'Dinossauro', image: 'images/d/dinossauro.jpg' },
         { word: 'Dado', image: 'images/d/dado.jpg' }
     ],
@@ -140,13 +140,23 @@ let letterCase = 'upper'; // 'upper', 'lower', or 'both'
 let correctImageIndex = 0;
 let currentCorrectWord = null;  // Armazena a palavra correta atual
 let currentIncorrectWords = []; // Armazena as palavras incorretas atuais
+let consecutiveErrors = 0;      // Contador de erros consecutivos
+let soundEnabled = true;        // Som habilitado por padrão
+let gameStarted = false;        // Indica se o jogo foi iniciado
+let showWords = false;          // Indica se as palavras devem ser mostradas
+let isGameLocked = false;       // Impede cliques durante transições
 
 // DOM Elements
+const startScreen = document.getElementById('startScreen');
+const startButton = document.getElementById('startButton');
+const gameOverScreen = document.getElementById('gameOverScreen');
 const randomModeBtn = document.getElementById('randomMode');
 const orderModeBtn = document.getElementById('orderMode');
 const upperCaseBtn = document.getElementById('upperCase');
 const lowerCaseBtn = document.getElementById('lowerCase');
 const bothCasesBtn = document.getElementById('bothCases');
+const soundOnBtn = document.getElementById('soundOn');
+const soundOffBtn = document.getElementById('soundOff');
 const prevLetterBtn = document.getElementById('prevLetter');
 const nextLetterBtn = document.getElementById('nextLetter');
 const currentLetterEl = document.querySelector('.current-letter');
@@ -159,17 +169,79 @@ const settingsButton = document.getElementById('settingsButton');
 const settingsMenu = document.getElementById('settingsMenu');
 const closeSettings = document.getElementById('closeSettings');
 const sadFace = document.getElementById('sadFace');
+const showWordsButton = document.getElementById('showWordsButton');
+
+// Audio Elements
+const clickSound = document.getElementById('clickSound');
+const correctSound = document.getElementById('correctSound');
+const gameOverSound = document.getElementById('gameOverSound');
+const gameStartSound = document.getElementById('gameStartSound');
 
 // Initialize app
 document.addEventListener('DOMContentLoaded', () => {
     setEventListeners();
-    updateLetter();
+    // Não inicializamos o jogo aqui, apenas aguardamos o clique no botão JOGAR
 });
+
+// Function to play sound if enabled
+function playSound(sound) {
+    if (soundEnabled) {
+        sound.currentTime = 0; // Reinicia o som caso esteja tocando
+        sound.play();
+    }
+}
+
+// Function to start the game
+function startGame() {
+    gameStarted = true;
+    startScreen.classList.add('hiding');
+    
+    // Esconder a tela inicial após a animação
+    setTimeout(() => {
+        startScreen.style.display = 'none';
+    }, 500);
+    
+    // Tocar som de início do jogo
+    playSound(gameStartSound);
+    
+    // Inicializar o jogo
+    resetConsecutiveErrors();
+    updateLetter();
+}
+
+// Function to show game over screen
+function showGameOver() {
+    playSound(gameOverSound);
+    
+    gameOverScreen.style.display = 'flex';
+    
+    // Esconder tela de game over após 4 segundos
+    setTimeout(() => {
+        gameOverScreen.classList.add('hiding');
+        
+        setTimeout(() => {
+            gameOverScreen.style.display = 'none';
+            gameOverScreen.classList.remove('hiding');
+            resetConsecutiveErrors();
+        }, 500);
+    }, 4000);
+}
+
+// Reset consecutive errors counter
+function resetConsecutiveErrors() {
+    consecutiveErrors = 0;
+}
 
 // Set event listeners
 function setEventListeners() {
+    // Start button
+    startButton.addEventListener('click', () => {
+        startGame();
+    });
+    
     // Settings menu
     settingsButton.addEventListener('click', () => {
+        playSound(clickSound);
         settingsMenu.classList.add('show');
     });
     
@@ -215,6 +287,18 @@ function setEventListeners() {
         toggleActiveButton(bothCasesBtn, [upperCaseBtn, lowerCaseBtn]);
         updateLetterDisplay();
     });
+    
+    // Sound buttons
+    soundOnBtn.addEventListener('click', () => {
+        soundEnabled = true;
+        toggleActiveButton(soundOnBtn, soundOffBtn);
+    });
+    
+    soundOffBtn.addEventListener('click', () => {
+        soundEnabled = false;
+        toggleActiveButton(soundOffBtn, soundOnBtn);
+        // Não tocamos som aqui porque o som foi desativado
+    });
 
     // Navigation buttons
     prevLetterBtn.addEventListener('click', () => {
@@ -239,9 +323,27 @@ function setEventListeners() {
         }
     });
 
+    // Show/Hide Words Button
+    showWordsButton.addEventListener('click', () => {
+        playSound(clickSound);
+        showWords = !showWords;
+        
+        // Atualizar ícone
+        if (showWords) {
+            showWordsButton.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            document.body.classList.add('show-words');
+        } else {
+            showWordsButton.innerHTML = '<i class="fas fa-eye"></i>';
+            document.body.classList.remove('show-words');
+        }
+    });
+
     // Image options
     imageOptions.forEach(option => {
         option.addEventListener('click', () => {
+            // Se o jogo estiver bloqueado, não fazer nada
+            if (isGameLocked) return;
+            
             const isCorrect = option.getAttribute('data-correct') === 'true';
             const wordIndex = parseInt(option.getAttribute('data-word-index'));
             
@@ -252,7 +354,10 @@ function setEventListeners() {
             
             // Apply appropriate feedback class
             if (isCorrect) {
+                // Resposta correta
                 option.classList.add('correct');
+                playSound(correctSound);
+                resetConsecutiveErrors(); // Resetar erros consecutivos quando acertar
                 
                 // Show modal for correct answer
                 const imgElement = option.querySelector('img');
@@ -271,8 +376,20 @@ function setEventListeners() {
                 
                 // Não avançar automaticamente - aguardar clique do usuário
             } else {
-                // Para respostas incorretas, apenas mostrar feedback vermelho e rosto triste
+                // Resposta incorreta
                 option.classList.add('incorrect');
+                
+                // Bloquear o jogo para impedir cliques
+                isGameLocked = true;
+                
+                // Incrementar contador de erros consecutivos
+                consecutiveErrors++;
+                
+                // Se atingiu 4 erros consecutivos, mostrar tela de game over
+                if (consecutiveErrors >= 4) {
+                    showGameOver();
+                    return; // Sair da função para não continuar com o rosto triste normal
+                }
                 
                 // Mostrar o rosto triste
                 sadFace.classList.add('show');
@@ -373,6 +490,9 @@ function updateLetterDisplay() {
 
 // Update images based on current letter
 function updateImages() {
+    // Desbloqueamos o jogo quando atualizamos as imagens
+    isGameLocked = false;
+    
     const currentLetter = alphabet[currentLetterIndex];
     
     try {
@@ -466,17 +586,23 @@ function updateImages() {
             // Remove any previous feedback classes
             option.classList.remove('selected', 'correct', 'incorrect');
             
-            const imgElement = option.querySelector('img');
             const currentImage = allImages[index];
             
-            imgElement.src = currentImage.image;
-            imgElement.alt = currentImage.word;
+            // Atualizar estrutura HTML para acomodar a palavra abaixo da imagem
+            option.innerHTML = `
+                <div class="image-wrapper">
+                    <img src="${currentImage.image}" alt="${currentImage.word}">
+                </div>
+                <div class="word-label">${currentImage.word}</div>
+            `;
+            
             option.setAttribute('data-correct', currentImage.isCorrect.toString());
             option.setAttribute('data-word-index', currentImage.wordIndex.toString());
             
             // Fallback para imagens não encontradas
+            const imgElement = option.querySelector('img');
             imgElement.onerror = function() {
-                this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150"><rect width="100%" height="100%" fill="%23f0f0f0"/><text x="50%" y="50%" font-family="Arial" font-size="24" fill="%23333" dominant-baseline="middle" text-anchor="middle">' + this.alt + '</text></svg>';
+                this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150"><rect width="100%" height="100%" fill="%23f0f0f0"/><text x="50%" y="50%" font-family="Arial" font-size="24" fill="%23333" dominant-baseline="middle" text-anchor="middle">' + currentImage.word + '</text></svg>';
             };
         });
         
@@ -489,6 +615,14 @@ function updateImages() {
             setTimeout(() => updateLetter(), 0);
             return;
         }
+        
+        // Aplicar a classe show-words se necessário
+        if (showWords) {
+            document.body.classList.add('show-words');
+        } else {
+            document.body.classList.remove('show-words');
+        }
+        
     } catch (error) {
         console.error('Erro ao atualizar imagens:', error);
         // Em caso de erro, tentar com outra letra

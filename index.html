@@ -11,12 +11,35 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Tela Inicial -->
+    <div id="startScreen" class="start-screen">
+        <div class="start-content">
+            <h1>Qual é a Letra?</h1>
+            <p>Aprendendo o alfabeto de forma divertida!</p>
+            <button id="startButton" class="start-button">JOGAR</button>
+        </div>
+    </div>
+    
+    <!-- Tela de Game Over -->
+    <div id="gameOverScreen" class="game-over-screen">
+        <div class="game-over-content">
+            <img src="images/sad-face.png" alt="Carinha triste" class="sad-face-img">
+            <h2>TENTE NOVAMENTE</h2>
+        </div>
+    </div>
+    
+    <!-- Container principal do jogo -->
     <div class="container">
         <header>
             <h1>Qual é a Letra?</h1>
-            <button id="settingsButton" class="settings-button">
-                <i class="fas fa-cog"></i>
-            </button>
+            <div class="header-buttons">
+                <button id="showWordsButton" class="icon-button">
+                    <i class="fas fa-eye"></i>
+                </button>
+                <button id="settingsButton" class="settings-button">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
         </header>
         
         <div id="settingsMenu" class="settings-menu">
@@ -39,6 +62,14 @@
                     </div>
                 </div>
                 
+                <div class="option-group">
+                    <label>Som:</label>
+                    <div class="toggle-buttons">
+                        <button id="soundOn" class="active"><i class="fas fa-volume-up"></i></button>
+                        <button id="soundOff"><i class="fas fa-volume-mute"></i></button>
+                    </div>
+                </div>
+                
                 <button id="closeSettings" class="close-settings">Fechar</button>
             </div>
         </div>
@@ -56,25 +87,31 @@
         </div>
         
         <div class="images-container">
-            <div class="image-option" data-correct="false">
-                <img src="" alt="Imagem 1" id="image1">
+            <div class="image-option" data-correct="false" data-word-index="0">
+                <img src="placeholder.jpg" alt="Opção 1">
             </div>
-            <div class="image-option" data-correct="true">
-                <img src="" alt="Imagem 2" id="image2">
+            <div class="image-option" data-correct="false" data-word-index="1">
+                <img src="placeholder.jpg" alt="Opção 2">
             </div>
-            <div class="image-option" data-correct="false">
-                <img src="" alt="Imagem 3" id="image3">
+            <div class="image-option" data-correct="false" data-word-index="2">
+                <img src="placeholder.jpg" alt="Opção 3">
             </div>
         </div>
         
-        <div class="modal" id="imageModal">
+        <div id="imageModal" class="modal">
             <div class="modal-content">
                 <span class="close-button">&times;</span>
-                <img id="modalImage" src="" alt="Imagem ampliada">
-                <p id="modalWord">Palavra</p>
+                <img id="modalImage" src="placeholder.jpg" alt="Imagem grande">
+                <div id="modalWord">Palavra</div>
             </div>
         </div>
     </div>
+    
+    <!-- Elementos de Áudio -->
+    <audio id="clickSound" src="audios/click.mp3" preload="auto"></audio>
+    <audio id="correctSound" src="audios/parabens.mp3" preload="auto"></audio>
+    <audio id="gameOverSound" src="audios/game-over.mp3" preload="auto"></audio>
+    <audio id="gameStartSound" src="audios/game-start.mp3" preload="auto"></audio>
     
     <script src="script.js"></script>
 </body>
